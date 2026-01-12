@@ -22,7 +22,7 @@ const Navbar = () => {
       onStart: () => {
         // 1. Stop the smoother logic
         ScrollSmoother.get()?.paused(true);
-        // 2. Hide the visual scrollbar
+        //1. Hide the visual scrollbar
         document.body.style.overflow = 'hidden';
       },
       onComplete: () => {
@@ -139,7 +139,7 @@ const Navbar = () => {
   })
 
   return (
-    <div className="main relative h-[10vh] border-b-2 border-background w-full bg-foreground overflow-hidden">
+    <div className="main relative h-[10vh] border-b border-background w-full bg-foreground overflow-hidden">
       {/* INTRO TEXT */}
       <p className="intro-text absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl text-black">
         WELCOME
@@ -174,9 +174,38 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* SIDEBAR */}
-      <aside className="menuItem fixed left-0 top-[10vh] z-50 h-[90vh] w-full bg-foreground">
-        {/* menu content here */}
+
+      <aside className="menuItem fixed left-0 text-background font-outfit text-4xl  top-[10vh] z-50 h-[90vh] w-full bg-foreground">
+        {/* 1. Parent gets TOP and LEFT borders */}
+        <div className='grid grid-cols-3 h-[45vh] text-center   border-black'>
+
+          {/* 2. EVERY child gets BOTTOM and RIGHT borders */}
+          <div className='flex cursor-pointer items-center justify-center border-b border-r border-black transition-all duration-150 hover:bg-black hover:text-white'>
+            <p>Residents</p>
+          </div>
+
+          <div className='flex cursor-pointer items-center justify-center border-b border-r border-black transition-all duration-150 hover:bg-black hover:text-white'>
+            <p>Culture</p>
+          </div>
+
+          <div className='flex cursor-pointer items-center justify-center border-b  border-black transition-all duration-150 hover:bg-black hover:text-white'>
+            <p>Houses</p>
+          </div>
+
+          <div className='flex cursor-pointer items-center justify-center border-b border-r border-black transition-all duration-150 hover:bg-black hover:text-white'>
+            <p>About</p>
+          </div>
+
+          <div className='flex cursor-pointer items-center justify-center border-b border-r border-black transition-all duration-150 hover:bg-black hover:text-white'>
+            <p>Blogs</p>
+          </div>
+
+          <div className='flex cursor-pointer items-center justify-center border-b  border-black transition-all duration-150 hover:bg-black hover:text-white'>
+            <p>Contact</p>
+          </div>
+
+        </div>
+        <div></div>
       </aside>
     </div>
   )
