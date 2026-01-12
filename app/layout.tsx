@@ -36,7 +36,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${outfit.variable} ${noto.variable} ${geistMono.variable} bg-[#fcfbf5] font-noto antialiased`}
       >
-        <Navbar/>
         {children}
       </body>
     </html>

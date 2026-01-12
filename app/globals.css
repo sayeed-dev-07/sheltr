@@ -26,3 +26,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  transform: none !important;
+  padding: 0 !important;
+  z-index: 10 !important;
+}
+
+.fullscreen > div {
+  width: 100% !important;
+  height: 100% !important;
+}

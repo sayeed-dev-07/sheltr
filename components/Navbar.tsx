@@ -20,27 +20,56 @@ const Navbar = () => {
             mask: "words",
             autoSplit: true,
         })
+        const split = SplitText.create('p', {
+            type: 'chars, words',
+            mask: 'words'
+        })
+
 
         tl.from('.main', {
             height: '100vh',
             ease: 'power4.in',
             duration: 1.5
-        }).from(splitRef.current.words, {
-            duration: 0.5,
-            y: 100,
-            autoAlpha: 0,
-            stagger: 0.04,
-        }, '+=25%').from('#img', {
-            y: 100,
-            autoAlpha: 0,
-        }, '-=1')
+        }, '2')
+            .fromTo(split.words, {
+                autoAlpha: 0,
+                y: 100
+            }, {
+                y: 0,
+                autoAlpha: 1,
+            }, '-=3')
+            .to(
+                split.words,
+                {
+                    autoAlpha: 0,
+                    y: -40,
+                    stagger: 0.03,
+                    ease: 'power3.in',
+                },
+                '-=1' // happens just before/while navbar settles
+            )
+            .from(splitRef.current.words, {
+                duration: 0.5,
+                y: 100,
+                autoAlpha: 0,
+                stagger: 0.04,
+            }, '+=25%').from('#img', {
+                y: 100,
+                autoAlpha: 0,
+            }, '-=1')
 
         const links = gsap.utils.toArray<HTMLElement>('.link')
         const handlers: Array<{ element: HTMLElement; enter: () => void; leave: () => void }> = []
         links.forEach((link) => {
+            if (!links) {
+                return
+            }
             const line = link.querySelector('.line')
 
             // ENTER: left → right
+            if (!line) {
+                return
+            }
             gsap.set(line, {
                 x: '100%'
             })
@@ -90,7 +119,8 @@ const Navbar = () => {
     })
 
     return (
-        <div className={`bg-[#fcfbf5] main w-full h-[10vh]`}>
+        <div className={`bg-[#fcfbf5] main w-full h-[10vh] relative`}>
+            <p className='absolute text-5xl text-black -translate-y-[50%] -translate-x-[50%] left-[50%] top-[50%] '>WELCOME</p>
             <div className={`flex items-center justify-between px-[5%] h-full w-full`}>
                 <Link href={'/'} className='h-15 w-25 relative hover:scale-105 transition-all duration-150 cursor-pointer overflow-hidden'>
                     <Image
@@ -111,6 +141,9 @@ const Navbar = () => {
                             </Link>
                         )
                     )}
+                </div>
+                <div className='md:hidden link text-3xl text-black'>
+                        ji
                 </div>
             </div>
         </div>
