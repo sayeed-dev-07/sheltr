@@ -24,7 +24,7 @@ export default function Home() {
       content: "#smooth-content",
       smooth: 1.5,
       effects: true,
-      smoothTouch: 0.1,
+      smoothTouch: false,
     })
     const showAnim = gsap.from('.navbar-fixed', {
       yPercent: -100,
