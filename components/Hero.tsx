@@ -37,7 +37,7 @@ const Hero = () => {
 
     }, [imgaes.length])
     return (
-        <div ref={containerRef} className='lg:h-[90vh] md:h-[75vh]  h-[50vh] sm:h-[60vh] flex  w-full bg-[skyblue]'>
+        <div ref={containerRef} className='lg:h-[90vh] md:h-[75vh]  h-[50vh] sm:h-[60vh] flex  w-full bg-[skyblue] relative'>
             {
                 imgaes.map((img: { url: string, name: string }, i) => {
                     return <div className={`${index === i ? 'z-2  opacity-100 ' : 'z-0 opacity-0'}  absolute inset-0 w-full  h-full transition-all duration-2000`} key={img.name}>

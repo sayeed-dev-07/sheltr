@@ -4,6 +4,7 @@
 import BottomText from "@/components/BottomText";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import PickUp from "@/components/PickUp";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -55,9 +56,11 @@ export default function Home() {
       <nav className="navbar-fixed fixed top-0 left-0 w-full z-50">
         <Navbar />
       </nav>
-      <div id="smooth-content" className="mt-[10vh]">
+      <div id="smooth-content" className="mt-[10vh] h-auto">
         <Hero />
+        <PickUp/>
       </div>
+      
     </div>
   );
 }
