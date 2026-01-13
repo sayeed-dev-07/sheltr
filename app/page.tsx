@@ -59,6 +59,7 @@ export default function Home() {
       <div id="smooth-content" className="mt-[10vh] h-auto">
         <Hero />
         <PickUp/>
+        <div className="h-[120vh]"></div>
       </div>
       
     </div>

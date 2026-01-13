@@ -15,7 +15,7 @@ const ButtonBox = ({ color, text}: { color: string; text: string }) => {
              className="relative w-full h-full font-outfit group cursor-pointer"
         >
             {/* BACKGROUND */}
-            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 z-0  pointer-events-none">
                 {/* FILL — INSIDE BORDER */}
                 <div className={`absolute  top-1.25 bottom-1.25 left-1.25 right-2.25 group-hover:opacity-100 opacity-0 transition-all duration-150 ${color === 'black' ? 'bg-background' : 'bg-foreground'} `} />
 

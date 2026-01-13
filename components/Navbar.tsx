@@ -17,224 +17,153 @@ const Navbar = () => {
   const topRef = useRef<HTMLDivElement | null>(null)
   const menuTl = useRef<GSAPTimeline | null>(null)
   const topTl = useRef<GSAPTimeline | null>(null)
+
+  // 1. Sidebar hover animation logic
   useGSAP(() => {
-    if (!topRef.current) {
-      return
-    }
-    gsap.set(topRef.current, {
-      xPercent: -100,
-    })
+    if (!topRef.current) return;
+
+    gsap.set(topRef.current, { xPercent: -100 });
 
     topTl.current = gsap.timeline({ paused: true })
-    topTl.current.to(topRef.current!, {
-      xPercent: 0,
-      duration: 0.3,
-      ease: 'power3.out'
-    })
+      .to(topRef.current!, {
+        xPercent: 0,
+        duration: 0.3,
+        ease: 'power3.out'
+      });
   })
+
+  // 2. Main Intro and Menu Timeline Logic
   const { contextSafe } = useGSAP(() => {
-    /* ---------------------------------------------
-       INTRO NAVBAR ANIMATION
-    --------------------------------------------- */
     const introTl = gsap.timeline({
       onStart: () => {
-        // 1. Stop the smoother logic
         ScrollSmoother.get()?.paused(true);
-        //1. Hide the visual scrollbar
         document.body.style.overflow = 'hidden';
       },
       onComplete: () => {
-        // 3. Restart the smoother logic
         ScrollSmoother.get()?.paused(false);
-        // 4. Bring the scrollbar back
         document.body.style.overflow = 'auto';
       }
     })
 
+    // Prepare the text split
     const split = SplitText.create('.intro-text', {
       type: 'words',
-      mask: 'words',
     })
 
-    // hide hamburger initially
-    gsap.set('.hamburger', {
-      y: 30,
-      autoAlpha: 0,
-    })
+    /* --- INITIAL STATES (Fixes the Flash) --- */
+    // We set the containers to visible now that GSAP is ready to handle the children
+    gsap.set('.intro-text', { opacity: 1 });
+    gsap.set('.hamburger', { y: 30, autoAlpha: 0 });
+    gsap.set('#logo', { y: 100, autoAlpha: 0 });
 
+    /* --- ANIMATION SEQUENCE --- */
     introTl
-      .from('.main', {
-        height: '100vh',
+      // A. Expand the navbar height
+      .to('.main', {
+        height: '10vh',
         duration: 1.5,
         ease: 'power4.inOut',
       }, 2)
+      // B. Animate Welcome Text In
       .fromTo(
         split.words,
         { autoAlpha: 0, y: 100 },
         { autoAlpha: 1, y: 0, stagger: 0.06 },
         '-=3'
       )
+      // C. Animate Welcome Text Out
       .to(split.words, {
         autoAlpha: 0,
         y: -40,
         stagger: 0.04,
         ease: 'power3.in',
       }, '-=1.5')
-      .from('#logo', {
-        y: 100,
-        autoAlpha: 0,
+      // D. Reveal Logo
+      .to('#logo', {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.6,
+        ease: 'power3.out'
       }, '-=0.25')
+      // E. Reveal Hamburger
       .to('.hamburger', {
         y: 0,
         autoAlpha: 1,
         duration: 0.4,
         ease: 'power3.out',
-      })
+      }, "-=0.4")
 
-    /* ---------------------------------------------
-       SIDEBAR + HAMBURGER TIMELINE
-    --------------------------------------------- */
-
-    /* Top button hover */
-
-
-
-    // IMPORTANT: GSAP controls transforms — not Tailwind
-    gsap.set('.menuItem', {
-      xPercent: 100,
-    })
-
+    /* SIDEBAR + HAMBURGER TIMELINE */
     menuTl.current = gsap.timeline({ paused: true })
+      .to('#line-1', { rotation: 45, y: 8, duration: 0.2, ease: 'power2.inOut' }, 0)
+      .to('#line-2', { rotation: -45, y: -8, duration: 0.2, ease: 'power2.inOut' }, 0)
+      .to('.menuItem', { x: 0, duration: 0.6, ease: 'power4.inOut' })
 
-    menuTl.current
-      // Hamburger → X
-      .to(
-        '#line-1',
-        {
-          rotation: 45,
-          y: 8,
-          duration: 0.2,
-          ease: 'power2.inOut',
-        },
-        0
-      )
-      .to(
-        '#line-2',
-        {
-          rotation: -45,
-          y: -8,
-          duration: 0.2,
-          ease: 'power2.inOut',
-        },
-        0
-      )
-
-      // Sidebar slide
-      .to(
-        '.menuItem',
-        {
-          xPercent: 0,
-          duration: 0.6,
-          ease: 'power4.inOut',
-        },
-      )
-
-    // CRITICAL: start reversed so first click opens menu
     menuTl.current.reverse()
   }, [])
 
-  /* ---------------------------------------------
-     TOGGLE HANDLER (BEST PRACTICE)
-  --------------------------------------------- */
+  /* HANDLERS */
   const handleClick = contextSafe(() => {
     const isOpening = menuTl.current?.reversed();
-
     if (isOpening) {
-      menuTl.current?.timeScale(1).play();
+      menuTl.current?.play();
       ScrollSmoother.get()?.paused(true);
       document.body.style.overflow = 'hidden';
     } else {
-      menuTl.current?.timeScale(1.2).reverse();
+      menuTl.current?.reverse();
       ScrollSmoother.get()?.paused(false);
       document.body.style.overflow = 'auto';
     }
   })
 
-
-  // top hover control
-  const handleHoverIn = contextSafe(() => {
-    topTl.current?.timeScale(1).play();
-  });
-
-  const handleHoverOut = contextSafe(() => {
-    topTl.current?.timeScale(1.2).reverse();
-  });
-
-
-
   return (
-    <div className="main relative h-[10vh] border-b border-background w-full bg-foreground overflow-hidden">
-      {/* INTRO TEXT */}
-      <p className="intro-text absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl text-black">
-        WELCOME
-      </p>
+    <div className="main relative h-screen border-b border-background w-full bg-foreground overflow-hidden">
+      <div className='h-full w-full'>
+        {/* Added opacity-0 to prevent welcome flash */}
+        <p className="intro-text opacity-0 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full overflow-hidden text-6xl text-black">
+          WELCOME
+        </p>
 
-      {/* NAVBAR CONTENT */}
-      <div className="flex h-full w-full items-center justify-between px-[5%]">
-        <Link
-          href="/"
-          className="relative h-16 w-24 cursor-pointer overflow-hidden"
-        >
-          <Image
+        <div className="flex h-full w-full items-center justify-between px-[5%]">
+          {/* Logo starts at opacity-0 */}
+          <Link
+            href="/"
             id="logo"
-            src="/logo.svg"
-            alt="logo"
-            fill
-            className="object-contain"
-          />
-        </Link>
+            className="relative h-16 w-24 cursor-pointer overflow-hidden opacity-0"
+          >
+            <Image
+              src="/logo.svg"
+              alt="logo"
+              fill
+              className="object-contain"
+            />
+          </Link>
 
-        {/* HAMBURGER */}
-        <div
-          onClick={handleClick}
-          className="hamburger flex cursor-pointer flex-col items-center justify-center gap-y-4"
-        >
+          {/* Hamburger starts at opacity-0 */}
           <div
-            id="line-1"
-            className="h-0.5 w-10 sm:w-15 rounded-md bg-black"
-          />
-          <div id="line-2" className="h-0.5 w-10 sm:w-15 bg-black" />
+            onClick={handleClick}
+            className="hamburger opacity-0 flex cursor-pointer flex-col items-center justify-center gap-y-4"
+          >
+            <div id="line-1" className="h-0.5 w-10 sm:w-15 rounded-md bg-black" />
+            <div id="line-2" className="h-0.5 w-10 sm:w-15 bg-black" />
+          </div>
         </div>
+
+        {/* Sidebar Overlay */}
+        <aside className="menuItem translate-x-full fixed left-0 text-background font-outfit text-4xl top-[10vh] flex flex-col gap-y-5 z-50 h-[90vh] w-full bg-foreground">
+          <div className='grid uppercase md:grid-cols-3 grid-cols-1 sm:grid-cols-2 h-[45vh] text-center border-background'>
+            <HandleHoverComp divStyle='flex items-center justify-center border-b sm:border-r' text='Residents' />
+            <HandleHoverComp divStyle='flex items-center justify-center border-b border-r-0 md:border-r' text='Culture' />
+            <HandleHoverComp divStyle='flex items-center md:border-r-0 sm:border-r border-r-0 justify-center border-b ' text='Houses' />
+            <HandleHoverComp divStyle='flex items-center justify-center border-b border-r-0 md:border-r' text='About' />
+            <HandleHoverComp divStyle='flex items-center justify-center border-b sm:border-r' text='Blogs' />
+            <HandleHoverComp divStyle='flex items-center justify-center border-b ' text='Contact' />
+          </div>
+          <div className='flex items-center justify-end px-4'>
+            <HandleHoverComp divStyle='sm:px-6 px-3.5 border-2 w-fit text-xl sm:py-2.5 py-1.5' text='TOP'></HandleHoverComp>
+          </div>
+        </aside>
       </div>
-
-
-      <aside className="menuItem fixed left-0 text-background font-outfit text-4xl  top-[10vh] flex flex-col gap-y-5 z-50 h-[90vh] w-full bg-foreground">
-        {/* 1. Parent gets TOP and LEFT borders */}
-        <div className='grid uppercase md:grid-cols-3 grid-cols-1 sm:grid-cols-2 h-[45vh] text-center   border-background'>
-
-          {/* 2. EVERY child gets BOTTOM and RIGHT borders */}
-          <HandleHoverComp divStyle='flex  items-center justify-center border-b sm:border-r' text='Residents' />
-          <HandleHoverComp divStyle='flex  items-center justify-center border-b border-r-0 md:border-r' text='Culture' />
-          <HandleHoverComp divStyle='flex  items-center md:border-r-0 sm:border-r border-r-0 justify-center border-b ' text='Houses' />
-          <HandleHoverComp divStyle='flex  items-center  justify-center border-b border-r-0 md:border-r' text='About' />
-          <HandleHoverComp divStyle='flex  items-center justify-center border-b sm:border-r' text='Blogs' />
-          <HandleHoverComp divStyle='flex  items-center justify-center border-b ' text='Contact' />
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-        <div className='flex items-center justify-end px-4'>
-          <HandleHoverComp divStyle='sm:px-6 px-3.5   border-2  w-fit text-xl sm:py-2.5 py-1.5' text='TOP'></HandleHoverComp>
-        </div>
-      </aside>
     </div>
   )
 }
