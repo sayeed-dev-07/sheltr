@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/refs */
 'use client'
 import BottomText from "@/components/BottomText";
+import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -54,9 +55,8 @@ export default function Home() {
       <nav className="navbar-fixed fixed top-0 left-0 w-full z-50">
         <Navbar />
       </nav>
-      <div id="smooth-content" className="">
-        <div className="h-[200vh] bg-sky-400">
-        </div>
+      <div id="smooth-content" className="mt-[10vh]">
+        <Hero />
       </div>
     </div>
   );

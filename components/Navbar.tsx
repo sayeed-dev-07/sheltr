@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
@@ -8,12 +9,29 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { SplitText } from 'gsap/SplitText'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
+import HandleHoverComp from './handleHover'
 
 gsap.registerPlugin(SplitText, ScrollSmoother)
 
 const Navbar = () => {
+  const topRef = useRef<HTMLDivElement | null>(null)
   const menuTl = useRef<GSAPTimeline | null>(null)
+  const topTl = useRef<GSAPTimeline | null>(null)
+  useGSAP(() => {
+    if (!topRef.current) {
+      return
+    }
+    gsap.set(topRef.current, {
+      xPercent: -100,
+    })
 
+    topTl.current = gsap.timeline({ paused: true })
+    topTl.current.to(topRef.current!, {
+      xPercent: 0,
+      duration: 0.3,
+      ease: 'power3.out'
+    })
+  })
   const { contextSafe } = useGSAP(() => {
     /* ---------------------------------------------
        INTRO NAVBAR ANIMATION
@@ -77,6 +95,10 @@ const Navbar = () => {
        SIDEBAR + HAMBURGER TIMELINE
     --------------------------------------------- */
 
+    /* Top button hover */
+
+
+
     // IMPORTANT: GSAP controls transforms — not Tailwind
     gsap.set('.menuItem', {
       xPercent: 100,
@@ -91,7 +113,7 @@ const Navbar = () => {
         {
           rotation: 45,
           y: 8,
-          duration: 0.3,
+          duration: 0.2,
           ease: 'power2.inOut',
         },
         0
@@ -101,7 +123,7 @@ const Navbar = () => {
         {
           rotation: -45,
           y: -8,
-          duration: 0.3,
+          duration: 0.2,
           ease: 'power2.inOut',
         },
         0
@@ -128,15 +150,27 @@ const Navbar = () => {
     const isOpening = menuTl.current?.reversed();
 
     if (isOpening) {
-      menuTl.current?.play();
+      menuTl.current?.timeScale(1).play();
       ScrollSmoother.get()?.paused(true);
       document.body.style.overflow = 'hidden';
     } else {
-      menuTl.current?.reverse();
+      menuTl.current?.timeScale(1.2).reverse();
       ScrollSmoother.get()?.paused(false);
       document.body.style.overflow = 'auto';
     }
   })
+
+
+  // top hover control
+  const handleHoverIn = contextSafe(() => {
+    topTl.current?.timeScale(1).play();
+  });
+
+  const handleHoverOut = contextSafe(() => {
+    topTl.current?.timeScale(1.2).reverse();
+  });
+
+
 
   return (
     <div className="main relative h-[10vh] border-b border-background w-full bg-foreground overflow-hidden">
@@ -156,7 +190,6 @@ const Navbar = () => {
             src="/logo.svg"
             alt="logo"
             fill
-            priority
             className="object-contain"
           />
         </Link>
@@ -175,37 +208,32 @@ const Navbar = () => {
       </div>
 
 
-      <aside className="menuItem fixed left-0 text-background font-outfit text-4xl  top-[10vh] z-50 h-[90vh] w-full bg-foreground">
+      <aside className="menuItem fixed left-0 text-background font-outfit text-4xl  top-[10vh] flex flex-col gap-y-5 z-50 h-[90vh] w-full bg-foreground">
         {/* 1. Parent gets TOP and LEFT borders */}
-        <div className='grid grid-cols-3 h-[45vh] text-center   border-black'>
+        <div className='grid uppercase md:grid-cols-3 grid-cols-1 sm:grid-cols-2 h-[45vh] text-center   border-background'>
 
           {/* 2. EVERY child gets BOTTOM and RIGHT borders */}
-          <div className='flex cursor-pointer items-center justify-center border-b border-r border-black transition-all duration-150 hover:bg-black hover:text-white'>
-            <p>Residents</p>
-          </div>
+          <HandleHoverComp divStyle='flex  items-center justify-center border-b sm:border-r' text='Residents' />
+          <HandleHoverComp divStyle='flex  items-center justify-center border-b border-r-0 md:border-r' text='Culture' />
+          <HandleHoverComp divStyle='flex  items-center md:border-r-0 sm:border-r border-r-0 justify-center border-b ' text='Houses' />
+          <HandleHoverComp divStyle='flex  items-center  justify-center border-b border-r-0 md:border-r' text='About' />
+          <HandleHoverComp divStyle='flex  items-center justify-center border-b sm:border-r' text='Blogs' />
+          <HandleHoverComp divStyle='flex  items-center justify-center border-b ' text='Contact' />
 
-          <div className='flex cursor-pointer items-center justify-center border-b border-r border-black transition-all duration-150 hover:bg-black hover:text-white'>
-            <p>Culture</p>
-          </div>
 
-          <div className='flex cursor-pointer items-center justify-center border-b  border-black transition-all duration-150 hover:bg-black hover:text-white'>
-            <p>Houses</p>
-          </div>
 
-          <div className='flex cursor-pointer items-center justify-center border-b border-r border-black transition-all duration-150 hover:bg-black hover:text-white'>
-            <p>About</p>
-          </div>
 
-          <div className='flex cursor-pointer items-center justify-center border-b border-r border-black transition-all duration-150 hover:bg-black hover:text-white'>
-            <p>Blogs</p>
-          </div>
 
-          <div className='flex cursor-pointer items-center justify-center border-b  border-black transition-all duration-150 hover:bg-black hover:text-white'>
-            <p>Contact</p>
-          </div>
+
+
+
+
+
 
         </div>
-        <div></div>
+        <div className='flex items-center justify-end px-4'>
+          <HandleHoverComp divStyle='sm:px-6 px-3.5   border-2  w-fit text-xl sm:py-2.5 py-1.5' text='TOP'></HandleHoverComp>
+        </div>
       </aside>
     </div>
   )

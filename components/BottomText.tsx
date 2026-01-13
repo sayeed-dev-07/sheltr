@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/refs */
 'use client'
 
-import React, { useRef } from 'react'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
+import React from 'react'
 
-const ButtonBox = ({ color, text }: { color: string; text: string }) => {
-    // 👇 Scope reference (CRITICAL)
-   
+import { ArrowRight } from 'lucide-react'
+
+const ButtonBox = ({ color, text}: { color: string; text: string }) => {
+
+
 
     return (
 
-        <div
-            className="relative font-outfit w-32 h-15.5 group cursor-pointer"
+        <div 
+             className="relative w-full h-full font-outfit group cursor-pointer"
         >
             {/* BACKGROUND */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -69,10 +69,13 @@ const ButtonBox = ({ color, text }: { color: string; text: string }) => {
             </div>
 
             {/* FOREGROUND */}
-            <div className="relative z-10 flex h-full items-center justify-center">
+            <div className="relative z-10 flex h-full items-center gap-x-2 justify-center  group">
                 <span className={`font-medium ${color === 'black' ? 'text-background group-hover:text-foreground' : 'text-foreground group-hover:text-background'} textHover duration-150 transition-all text-2xl `}>
                     {text}
                 </span>
+                <div className='mt-1'>
+                    <ArrowRight className={`${color === 'white' ? 'group-hover:stroke-background stroke-foreground' : 'stroke-background group-hover:stroke-foreground'}  duration-150 transition-all text-2xl`} />
+                </div>
             </div>
         </div>
 
