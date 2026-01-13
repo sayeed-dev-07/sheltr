@@ -7,8 +7,6 @@ import { ArrowRight } from 'lucide-react'
 
 const ButtonBox = ({ color, text}: { color: string; text: string }) => {
 
-
-
     return (
 
         <div 
@@ -26,7 +24,7 @@ const ButtonBox = ({ color, text}: { color: string; text: string }) => {
                         backgroundImage:
                             color === 'black'
                                 ? "url('/images/top.png')"
-                                : "url('/images/whtBtntop.png')",
+                                : "url('/images/wht-btn-top.png')",
                         backgroundSize: '200px 6px',
                     }}
                 />
@@ -38,7 +36,7 @@ const ButtonBox = ({ color, text}: { color: string; text: string }) => {
                         backgroundImage:
                             color === 'black'
                                 ? "url('/images/bottom.png')"
-                                : "url('/images/whtBtnButtom.png')",
+                                : "url('/images/wht-btn-bottom.png')",
                         backgroundSize: '190px 6px',
                     }}
                 />
@@ -50,7 +48,7 @@ const ButtonBox = ({ color, text}: { color: string; text: string }) => {
                         backgroundImage:
                             color === 'black'
                                 ? "url('/images/left.png')"
-                                : "url('/images/whtBtnLeft.png')",
+                                : "url('/images/wht-btn-left.png')",
                         backgroundSize: '6px 70px',
                     }}
                 />
@@ -62,7 +60,7 @@ const ButtonBox = ({ color, text}: { color: string; text: string }) => {
                         backgroundImage:
                             color === 'black'
                                 ? "url('/images/right.png')"
-                                : "url('/images/whtBtnRight.png')",
+                                : "url('/images/wht-btn-right.png')",
                         backgroundSize: '6px 70px',
                     }}
                 />
