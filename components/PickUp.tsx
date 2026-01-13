@@ -46,7 +46,7 @@ const PickUp = () => {
                     <Image fill loading='lazy' alt='pickupImg' src={'https://ecjp9e4f5fk.exactdn.com/wordpress/wp-content/themes/bess/assets/images/top_pickup_title.png'} />
                 </div>
             </div>
-            <div className="rightSide text-background flex flex-col gap-y-12.5 font-outfit text-2xl w-full md:w-[50%]">
+            <div className="rightSide text-background flex flex-col gap-y-12.5 font-outfit sm:text-2xl text-lg w-full md:w-[50%]">
                 <div className="md:h-[110vh] w-full card1">
                     <ImgCard
                         url="https://i.pinimg.com/1200x/fe/41/9b/fe419b82f02d3d256072b9d357a51d29.jpg"
