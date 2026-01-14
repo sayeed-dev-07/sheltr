@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable react-hooks/refs */
 'use client'
-import BottomText from "@/components/BottomText";
+import BottomText from "@/components/Button";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import PickUp from "@/components/PickUp";
+import Zoom from "@/components/zoom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -56,12 +57,18 @@ export default function Home() {
       <nav className="navbar-fixed fixed top-0 left-0 w-full z-50">
         <Navbar />
       </nav>
-      <div id="smooth-content" className="mt-[10vh] h-auto">
-        <Hero />
+      <div id="smooth-content">
+        <div className="pt-[10vh]">
+          <Hero/>
+        </div>
         <PickUp/>
-        <div className="h-[120vh]"></div>
+        <Zoom />
+        <div className="min-h-screen">
+
+        </div>
       </div>
-      
+
+
     </div>
   );
 }

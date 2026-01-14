@@ -47,7 +47,8 @@ const Navbar = () => {
 
     // Prepare the text split
     const split = SplitText.create('.intro-text', {
-      type: 'words',
+      type: 'chars, words',
+      autoSplit: true,
     })
 
     /* --- INITIAL STATES (Fixes the Flash) --- */
@@ -66,9 +67,9 @@ const Navbar = () => {
       }, 2)
       // B. Animate Welcome Text In
       .fromTo(
-        split.words,
+        split.chars,
         { autoAlpha: 0, y: 100 },
-        { autoAlpha: 1, y: 0, stagger: 0.06 },
+        { autoAlpha: 1, y: 0, stagger: 0.02 },
         '-=3'
       )
       // C. Animate Welcome Text Out
@@ -100,6 +101,7 @@ const Navbar = () => {
       .to('.menuItem', { x: 0, duration: 0.6, ease: 'power4.inOut' })
 
     menuTl.current.reverse()
+    
   }, [])
 
   /* HANDLERS */
@@ -120,7 +122,7 @@ const Navbar = () => {
     <div className="main relative h-screen border-b border-background w-full bg-foreground overflow-hidden">
       <div className='h-full w-full'>
         {/* Added opacity-0 to prevent welcome flash */}
-        <p className="intro-text opacity-0 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full overflow-hidden text-6xl text-black">
+        <p className="intro-text opacity-0 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full overflow-hidden text-3xl md:text-6xl text-black">
           WELCOME
         </p>
 

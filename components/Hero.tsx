@@ -3,7 +3,7 @@
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
-import ButtonBox from './BottomText';
+import ButtonBox from './Button';
 
 
 
@@ -28,7 +28,7 @@ const Hero = () => {
     const containerRef = useRef<HTMLDivElement | null>(null)
 
     useGSAP(() => {
-        
+
         const interval = setInterval(() => {
             setIndex((prev) => (prev === imgaes.length - 1 ? 0 : prev + 1))
         }, 10000)
@@ -37,7 +37,7 @@ const Hero = () => {
 
     }, [imgaes.length])
     return (
-        <div ref={containerRef} className='lg:h-[90vh] md:h-[75vh]  h-[50vh] sm:h-[60vh] flex  w-full bg-[skyblue] relative'>
+        <div ref={containerRef} className='lg:h-[90vh] border-b-2 border-background md:h-[75vh]  h-[50vh] sm:h-[60vh] flex  w-full bg-[skyblue] relative'>
             {
                 imgaes.map((img: { url: string, name: string }, i) => {
                     return <div className={`${index === i ? 'z-2  opacity-100 ' : 'z-0 opacity-0'}  absolute inset-0 w-full  h-full transition-all duration-2000`} key={img.name}>
@@ -51,13 +51,13 @@ const Hero = () => {
             }
             {/* Other contents */}
             <div className='w-full h-full relative z-5'>
-                
-                    <div className='lg:w-200 w-87.5 h-50 absolute  left-0 sm:top-[40%] top-[30%]  md:w-150 md:h-25 lg:h-50'>
-                        <Image src={'/text.svg'} loading='eager' fill alt='hero-text'/>
-                    </div>
-                
+
+                <div className='lg:w-200 w-87.5 h-50 absolute  left-0 sm:top-[40%] top-[30%]  md:w-150 md:h-25 lg:h-50'>
+                    <Image src={'/text.svg'} loading='eager' fill alt='hero-text' />
+                </div>
+
                 <div className='absolute h-14 w-40 sm:h-15 sm:w-50 right-[5%] bottom-[5%]'>
-                    <ButtonBox  color='white' text='Houses'/>
+                    <ButtonBox color='black' text='Houses' />
                 </div>
             </div>
         </div>
