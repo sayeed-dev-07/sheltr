@@ -12,31 +12,34 @@ const Zoom = () => {
     const mainContainerRef = useRef<HTMLDivElement | null>(null)
     const imgContainerRef = useRef<HTMLDivElement | null>(null)
 
+    useGSAP(() => {
+       
+        const mm = gsap.matchMedia()
+        mm.add('(min-width: 768px)', () => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: mainContainerRef.current,
+                    pin: true,
+                    scrub: true,
+                    start: 'top top',
+                    end: '+=300%',
+                },
+            })
 
-    useGSAP(()=>{
-        gsap.set(imgContainerRef.current, {
-            height: 200,
-            width:300
+            tl.to(imgContainerRef.current, {
+                width: '100vw',
+                height: '100vh',
+                ease: 'none',
+            })
+
         })
-        gsap.to(imgContainerRef.current, {
-            height:'100vh',
-            width:'100vw',
-            scrollTrigger:{
-                trigger:mainContainerRef.current,
-                pin:true,
-                scrub:1,
-                start: 'top top',
-                end: '+=300%',
-                
-            }
-            
-        })
+
     })
 
     return (
-        <div ref={mainContainerRef} className='w-full h-screen flex items-center  justify-center'>
-            <div ref={imgContainerRef} className='relative overflow-hidden '>
-                <Image fill  alt='scrollImg' className='object-cover ' src={'/images/finalzoom.jpg'} sizes="100vw" />
+        <div ref={mainContainerRef} className='w-full md:h-screen h-[40vh] flex items-center  justify-center mt-[45%] md:mt-0'>
+            <div ref={imgContainerRef} className='relative overflow-hidden md:h-[200px] md:w-[300px] w-full h-[60vh] '>
+                <Image fill alt='scrollImg' className='object-cover ' src={'/images/finalzoom.jpg'} sizes="100vw" />
             </div>
         </div>
     );

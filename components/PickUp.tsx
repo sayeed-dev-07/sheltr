@@ -14,7 +14,7 @@ const PickUp = () => {
 
     useGSAP(() => {
         const mm = gsap.matchMedia();
-        mm.add("(min-width: 800px)", () => {
+        mm.add("(min-width: 768px)", () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: contaierRef.current,
@@ -40,48 +40,50 @@ const PickUp = () => {
     })
 
     return (
-        <div ref={contaierRef} className='px-2 border-b-2 border-background flex w-full flex-col md:flex-row'>
+        <div ref={contaierRef} className='px-2 flex w-full flex-col md:flex-row'>
             <div className='leftSide md:w-[50%] w-full py-[10%] md:h-[100vh] flex items-center justify-center'>
-                <div className='lg:w-[450px] md:w-[350px] max-w-[450px] w-full relative h-[100px] md:h-[200px]'>
+                <div className='lg:w-112.5 md:w-87.5 sm:max-w-112.5 max-w-40 w-full relative h-15 md:h-50'>
                     <Image fill loading='lazy' alt='pickupImg' src={'https://ecjp9e4f5fk.exactdn.com/wordpress/wp-content/themes/bess/assets/images/top_pickup_title.png'} />
                 </div>
             </div>
             <div className="rightSide text-background flex flex-col gap-y-12.5 font-outfit sm:text-2xl text-lg w-full md:w-[50%]">
                 <div className="md:h-[110vh] w-full card1">
                     <ImgCard
-                        url="https://i.pinimg.com/1200x/fe/41/9b/fe419b82f02d3d256072b9d357a51d29.jpg"
-                        text="If you never step forward because you’re afraid of losing, then nothing will ever change. Growth begins the moment you decide that standing still is more frightening than failure."
+                        url="https://ecjp9e4f5fk.exactdn.com/wordpress/wp-content/uploads/2025/12/pickup_winterholiday.jpg?strip=all"
+                        text="Wood-burning stove, log cabin, bonfire experience, etc
+                        How to spend the best holidays
+                        It's an event to find.
+                        This weekend with my family
+                        Experience extraordinary holidays Please!"
                     />
                 </div>
 
                 <div className="md:h-[110vh] w-full card2">
                     <ImgCard
-                        url="https://i.pinimg.com/1200x/a1/52/c3/a152c390b1aaecac8f5171505bc4eb40.jpg"
-                        text="Strength is not something you are born with. It is forged through doubt, mistakes, and the countless times you chose to stand back up when it would have been easier to stay down."
+                        url="https://ecjp9e4f5fk.exactdn.com/wordpress/wp-content/uploads/2025/10/pickup_40th_02-480x480.jpg?strip=all"
+                        text='SHELTR House 40th Anniversary. The "SHELTR40 Festival" is currently being held at exhibition halls across the country!'
                     />
                 </div>
 
                 <div className="md:h-[110vh] w-full card3">
                     <ImgCard
-                        url="https://i.pinimg.com/1200x/dc/d2/38/dcd238c94b84c7314120a4e0402274a7.jpg"
-                        text="No matter how long the night lasts, the sky always finds a way to grow lighter. As long as you keep moving forward, even the darkest moments will eventually give way to dawn."
+                        url="https://ecjp9e4f5fk.exactdn.com/wordpress/wp-content/uploads/2025/03/pickup_request.webp?strip=all"
+                        text={`For those who want to know more about the SHELTR house before visiting LOGWAY
+                                SHELTR Guidebook "Why? We will deliver SHELTR.
+                                Product catalogs and price lists can be found at LOGWAY
+                                Please feel free to come and visit us.`}
                     />
                 </div>
 
                 <div className="md:h-[110vh] w-full card4">
                     <ImgCard
-                        url="https://i.pinimg.com/1200x/53/be/ac/53beac0544035b5df263d90f6f1eb93b.jpg"
-                        text="You don’t have to carry everything alone. Trusting others does not make you weak—it proves that you understand how powerful shared belief and unity can truly be."
+                        url="https://ecjp9e4f5fk.exactdn.com/wordpress/wp-content/uploads/2025/04/pickup_bnr_btob.jpg?strip=all"
+                        text={`As a unique manufacturer with origins in log cabins, SHELTR has been exploring new markets.
+
+                        Now, as part of our "special building business," we are taking great care in constructing corporate facilities such as stores, offices, and accommodation facilities.
+                        No.1 in the country for log house share. ※`}
                     />
                 </div>
-
-                <div className="md:h-[110vh] w-full card5">
-                    <ImgCard
-                        url="https://i.pinimg.com/736x/d5/12/4a/d5124afaa6caf42e9475e6e284fe3fdd.jpg"
-                        text="Pain, loss, and struggle are not meaningless. They shape who you become. The person who endures them and keeps moving forward is the one who truly changes the world."
-                    />
-                </div>
-
             </div>
 
         </div>

@@ -12,6 +12,7 @@
   --font-mono: var(--font-geist-mono);
   --font-outfit: var(--font-outfit);
   --font-noto: var(--font-noto-jp);
+  --font-nunito: var(--font-nunito);
 }
 
 @media (prefers-color-scheme: dark) {

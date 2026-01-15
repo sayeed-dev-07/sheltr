@@ -3,6 +3,7 @@
 'use client'
 import BottomText from "@/components/Button";
 import Hero from "@/components/Hero";
+import Magazine from "@/components/Magazine";
 import Navbar from "@/components/Navbar";
 import PickUp from "@/components/PickUp";
 import Zoom from "@/components/zoom";
@@ -63,9 +64,7 @@ export default function Home() {
         </div>
         <PickUp/>
         <Zoom />
-        <div className="min-h-screen">
-
-        </div>
+        <Magazine/>
       </div>
 
 
