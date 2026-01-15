@@ -144,7 +144,7 @@ const Navbar = () => {
           {/* Hamburger starts at opacity-0 */}
           <div
             onClick={handleClick}
-            className="hamburger opacity-0 flex cursor-pointer flex-col items-center justify-center gap-y-4"
+            className="hamburger opacity-0 flex cursor-pointer p-6 flex-col items-center justify-center gap-y-4"
           >
             <div id="line-1" className="h-0.5 w-10 sm:w-15 rounded-md bg-black" />
             <div id="line-2" className="h-0.5 w-10 sm:w-15 bg-black" />
@@ -153,7 +153,7 @@ const Navbar = () => {
 
         {/* Sidebar Overlay */}
         <aside className="menuItem translate-x-full fixed left-0 text-background font-outfit text-4xl top-[10vh] flex flex-col gap-y-5 z-50 h-[90vh] w-full bg-foreground">
-          <div className='grid uppercase md:grid-cols-3 grid-cols-1 sm:grid-cols-2 h-[45vh] text-center border-background'>
+          <div className='grid mt-[30%] sm:mt-0 uppercase md:grid-cols-3 grid-cols-1 sm:grid-cols-2 h-[45vh] text-center border-background'>
             <HandleHoverComp divStyle='flex items-center justify-center border-b sm:border-r' text='Residents' />
             <HandleHoverComp divStyle='flex items-center justify-center border-b border-r-0 md:border-r' text='Culture' />
             <HandleHoverComp divStyle='flex items-center md:border-r-0 sm:border-r border-r-0 justify-center border-b ' text='Houses' />

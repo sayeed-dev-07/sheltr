@@ -2,6 +2,7 @@
 import { Quote } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
+import TextAnimation from './TextAnimation';
 
 interface typeProp{
     img: string,
@@ -25,11 +26,9 @@ const Quotes = ({img, quotes, subQuotes, num}: typeProp) => {
             <div className='line h-2.5 md:h-5 bg-background w-full my-6'></div>
 
             {/* quotes section */}
-            <div className='flex flex-col gap-y-8'>
-                <p className='lg:text-6xl md:text-5xl text-4xl xl:text-7xl'>
-                    {quotes}
-                </p>
-                <p className='text-lg'>{subQuotes}</p>
+            <div className='flex flex-col gap-y-2 sm:gap-y-5 md:gap-y-8'>
+                <TextAnimation text={quotes} style='lg:text-6xl font-semibold sm:font-normal md:text-5xl text-4xl xl:text-7xl'/>
+                <TextAnimation style='text-lg' text={subQuotes}/>
             </div>
             <div className='line h-2.5 md:h-5 bg-background w-full my-12'></div>
             <div className='w-full h-[30vh] sm:h-[40vh] md:h-[30vh] lg:h-[45vh] xl:h-[80vh]'>
