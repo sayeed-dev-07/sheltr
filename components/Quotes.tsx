@@ -12,7 +12,7 @@ interface typeProp{
 
 const Quotes = ({img, quotes, subQuotes, num}: typeProp) => {
     return (
-        <div className='text-background md:mt-12 mt-6 lg:mt-24 font-nunito w-[90%] mx-auto '>
+        <div className='text-background md:mt-12 mt-6 lg:mt-24 font-nunito w-full px-2 md:w-[90%] mx-auto '>
             <div className='flex items-center justify-between'>
                 <div>
                     <Quote className='' size={48} />
@@ -22,7 +22,7 @@ const Quotes = ({img, quotes, subQuotes, num}: typeProp) => {
                     no <span className='lg:text-7xl md:text-6xl text-5xl xl:text-8xl'>{num}</span>
                     </div>                
             </div>
-            <div className='line h-[20px] bg-background w-full my-6'></div>
+            <div className='line h-2.5 md:h-5 bg-background w-full my-6'></div>
 
             {/* quotes section */}
             <div className='flex flex-col gap-y-8'>
@@ -31,7 +31,7 @@ const Quotes = ({img, quotes, subQuotes, num}: typeProp) => {
                 </p>
                 <p className='text-lg'>{subQuotes}</p>
             </div>
-            <div className='line h-[20px] bg-background w-full my-12'></div>
+            <div className='line h-2.5 md:h-5 bg-background w-full my-12'></div>
             <div className='w-full h-[30vh] sm:h-[40vh] md:h-[30vh] lg:h-[45vh] xl:h-[80vh]'>
                 <div className='relative w-full h-full'>
                    <Image src={img} loading='lazy' fill alt='img'/>
