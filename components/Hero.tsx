@@ -37,7 +37,7 @@ const Hero = () => {
 
     }, [imgaes.length])
     return (
-        <div ref={containerRef} className='lg:h-[90vh] after:content-[""] after:w-full after:h-full after:absolute after:inset-0 after:z-10 after:bg-black/40  border-b-2 border-background md:h-[75vh]  h-[50vh] sm:h-[60vh] flex  w-full bg-[skyblue] relative'>
+        <div ref={containerRef} className='lg:h-[90vh] after:content-[""] after:w-full after:h-full after:absolute after:inset-0 after:z-10 after:bg-black/20  border-b-2 border-background md:h-[75vh]  h-[50vh] sm:h-[60vh] flex  w-full bg-[skyblue] relative'>
             {
                 imgaes.map((img: { url: string, name: string }, i) => {
                     return <div className={`${index === i ? 'z-2  opacity-100 ' : 'z-0 opacity-0'}  absolute inset-0 w-full  h-full transition-all duration-2000`} key={img.name}>
@@ -51,11 +51,6 @@ const Hero = () => {
             }
             {/* Other contents */}
             <div className='w-full h-full relative z-15'>
-
-                <div className='lg:w-200 w-87.5 h-50 absolute  left-0 sm:top-[40%] top-[30%]  md:w-150 md:h-25 lg:h-50'>
-                    <Image src={'/text.svg'} loading='eager' fill alt='hero-text' />
-                </div>
-
                 <div className='absolute h-14 w-40 sm:h-15 sm:w-50 right-[5%] bottom-[5%]'>
                     <ButtonBox color='white' text='Houses' />
                 </div>

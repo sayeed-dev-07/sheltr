@@ -131,10 +131,10 @@ const Navbar = () => {
           <Link
             href="/"
             id="logo"
-            className="relative h-16 w-24 cursor-pointer overflow-hidden opacity-0"
+            className="relative h-20 w-32 cursor-pointer overflow-hidden opacity-0"
           >
             <Image
-              src="/logo.svg"
+              src="/logo.png"
               alt="logo"
               fill
               className="object-contain"

@@ -13,7 +13,8 @@ const TextAnimation = ({ text, style }: { text: string, style: string }) => {
     useGSAP(() => {
         const split = SplitText.create(textRef.current, {
             type: "words, lines",
-            mask: 'lines'
+            mask: 'lines',
+            autoSplit: true
         });
         gsap.from(split.lines, {
             scrollTrigger: {
