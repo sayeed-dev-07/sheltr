@@ -1,24 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable react-hooks/refs */
 'use client'
-import BottomText from "@/components/Button";
+
 import Hero from "@/components/Hero";
 import Magazine from "@/components/Magazine";
 import Navbar from "@/components/Navbar";
 import PickUp from "@/components/PickUp";
+import SectionBlog from "@/components/SectionBlog";
 import Zoom from "@/components/zoom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger)
 
 
 export default function Home() {
+  const [introCom, setIntroCom] = useState(false)
   const smotherRef = useRef<ScrollSmoother | null>(null)
   const { contextSafe } = useGSAP(() => {
 
@@ -56,15 +57,16 @@ export default function Home() {
   return (
     <div id="smooth-wrapper" className="bg-foreground h-auto">
       <nav className="navbar-fixed fixed top-0 left-0 w-full z-50">
-        <Navbar />
+        <Navbar setIntroCom={setIntroCom}/>
       </nav>
       <div id="smooth-content">
         <div className="pt-[10vh]">
-          <Hero/>
+          <Hero introCom={introCom}/>
         </div>
         <PickUp/>
         <Zoom />
         <Magazine/>
+        <SectionBlog/>
       </div>
 
 

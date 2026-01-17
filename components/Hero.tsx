@@ -4,8 +4,10 @@ import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import ButtonBox from './Button';
+import { SplitText } from 'gsap/SplitText';
+import gsap from 'gsap';
 
-
+gsap.registerPlugin(SplitText)
 
 const imgaes = [
     { url: '/images/house-1.jpg', name: 'house-1' },
@@ -22,20 +24,43 @@ const imgaes = [
 
 
 
-const Hero = () => {
+const Hero = ({ introCom }: { introCom: boolean }) => {
+    const heroTl = useRef<GSAPTimeline | null>(null)
 
     const [index, setIndex] = useState(0)
     const containerRef = useRef<HTMLDivElement | null>(null)
+    const { contextSafe } = useGSAP(() => {
+        const split = SplitText.create('.textSplit', {
+            type: 'words, lines',
+            mask: 'lines',
+        })
+        heroTl.current = gsap.timeline({ paused: true })
 
-    useGSAP(() => {
-
+        heroTl.current.from(split.lines, {
+            delay:0.5,
+            duration: 1,
+            ease: 'power3.out',
+            stagger: 0.1,
+            autoAlpha: 0,
+            y: 100,
+        })
         const interval = setInterval(() => {
             setIndex((prev) => (prev === imgaes.length - 1 ? 0 : prev + 1))
         }, 10000)
 
-        return () => clearInterval(interval)
+        return () => {
+            clearInterval(interval)
+            split.revert()
+        }
 
-    }, [imgaes.length])
+    }, { scope: containerRef })
+
+    React.useEffect(() => {
+        if (introCom) {
+            heroTl.current?.play()
+        }
+    }, [introCom])
+
     return (
         <div ref={containerRef} className='lg:h-[90vh] after:content-[""] after:w-full after:h-full after:absolute after:inset-0 after:z-10 after:bg-black/20  border-b-2 border-background md:h-[75vh]  h-[50vh] sm:h-[60vh] flex  w-full bg-[skyblue] relative'>
             {
@@ -51,6 +76,13 @@ const Hero = () => {
             }
             {/* Other contents */}
             <div className='w-full h-full relative z-15'>
+                <div className='absolute left-[2%] sm:top-[40%] top-[14%] max-w-[500px] px-2 md:max-w-[700px] md:text-4xl text-2xl sm:text-3xl lg:text-5xl font-semibold text-start w-full'>
+                    <p className='textSplit'>
+                        No reservation is required, so Anytime, any time
+                        An image of life Spread out
+                        Please come and play.
+                    </p>
+                </div>
                 <div className='absolute h-14 w-40 sm:h-15 sm:w-50 right-[5%] bottom-[5%]'>
                     <ButtonBox color='white' text='Houses' />
                 </div>

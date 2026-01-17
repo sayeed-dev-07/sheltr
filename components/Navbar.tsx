@@ -13,7 +13,7 @@ import HandleHoverComp from './handleHover'
 
 gsap.registerPlugin(SplitText, ScrollSmoother)
 
-const Navbar = () => {
+const Navbar = ({ setIntroCom }: { setIntroCom: React.Dispatch<React.SetStateAction<boolean>> }) => {
   const topRef = useRef<HTMLDivElement | null>(null)
   const menuTl = useRef<GSAPTimeline | null>(null)
   const topTl = useRef<GSAPTimeline | null>(null)
@@ -42,6 +42,7 @@ const Navbar = () => {
       onComplete: () => {
         ScrollSmoother.get()?.paused(false);
         document.body.style.overflow = 'auto';
+        setIntroCom(true)
       }
     })
 
@@ -92,6 +93,7 @@ const Navbar = () => {
         autoAlpha: 1,
         duration: 0.4,
         ease: 'power3.out',
+        
       }, "-=0.4")
 
     /* SIDEBAR + HAMBURGER TIMELINE */
@@ -101,7 +103,7 @@ const Navbar = () => {
       .to('.menuItem', { x: 0, duration: 0.6, ease: 'power4.inOut' })
 
     menuTl.current.reverse()
-    
+
   }, [])
 
   /* HANDLERS */
@@ -126,7 +128,7 @@ const Navbar = () => {
           WELCOME
         </p>
 
-        <div className="flex h-full w-full items-center justify-between px-[5%]">
+        <div className="flex h-full w-full items-center justify-between px-[1%] md:px-[5%]">
           {/* Logo starts at opacity-0 */}
           <Link
             href="/"
