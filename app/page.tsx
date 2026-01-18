@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/refs */
 'use client'
 
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Magazine from "@/components/Magazine";
 import Navbar from "@/components/Navbar";
@@ -67,6 +68,7 @@ export default function Home() {
         <Zoom />
         <Magazine/>
         <SectionBlog/>
+        <Footer/>
       </div>
 
 

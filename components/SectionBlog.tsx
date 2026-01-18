@@ -5,6 +5,7 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import Image from 'next/image';
 import React from 'react';
 import TextAnimation from './TextAnimation';
+import ButtonBox from './Button';
 
 gsap.registerPlugin(ScrollSmoother)
 
@@ -24,7 +25,7 @@ const SectionBlog = () => {
 
     return (
         <div id='smooth-wrapper' className='bg-[#ffe23f] min-h-[160vh]  py-[10%] md:py-[5%] sm:px-[5%] px-2 flex items-center justify-center'>
-            <div id='smooth-content' className='text-background font-nunito w-full text-lg sm:text-2xl h-full md:text-3xl '>
+            <div id='smooth-content' className='text-background font-nunito w-full text-xl sm:text-2xl h-full md:text-3xl '>
                 <div className='flex flex-col gap-y-24 lg:text-4xl max-w-[1200px] mx-auto'>
                     
                     <div className='w-full flex  items-center flex-col md:flex-row md:gap-3 gap-y-12 justify-between '>
@@ -56,10 +57,13 @@ const SectionBlog = () => {
                         />
                     </div>
 
-                    <div data-speed='clamp(1.2)' className='lg:w-[500px] w-full sm:w-[500px] flex items-center md:justify-end'>
+                    <div data-speed='clamp(1.1)' className='lg:w-[500px] w-full sm:w-[500px] flex flex-col gap-y-5 items-center md:justify-end'>
                         <TextAnimation style='text-center' text='No reservation is required, so Anytime, any time
                             An image of life Spread out
                             Please come and play.'/>
+                            <div className='w-[150px]  md:w-[250px] mb-[5%] h-[60px]'>
+                                <ButtonBox color='black' text='See more'/>
+                            </div>
                     </div>
                 </div>
                 </div>

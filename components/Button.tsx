@@ -68,7 +68,7 @@ const ButtonBox = ({ color, text}: { color: string; text: string }) => {
 
             {/* FOREGROUND */}
             <div className="relative z-10 flex h-full items-center gap-x-2 justify-center  group">
-                <span className={`font-medium ${color === 'black' ? 'text-black group-hover:text-foreground' : 'text-foreground group-hover:text-black'} textHover duration-150 transition-all text-2xl `}>
+                <span className={`font-medium ${color === 'black' ? 'text-black group-hover:text-foreground' : 'text-foreground group-hover:text-black'} textHover duration-150 transition-all text-lg sm:text-xl md:text-2xl `}>
                     {text}
                 </span>
                 <div className='mt-1'>
