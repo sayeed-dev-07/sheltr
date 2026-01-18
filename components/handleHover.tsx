@@ -8,9 +8,11 @@ interface prop {
     divStyle: string,
     pStyle?: string,
     text: string,
+    handleNavClick: (target:string) => void
+   
 }
 
-const HandleHoverComp = ({  divStyle, pStyle, text }: prop) => {
+const HandleHoverComp = ({  divStyle, pStyle, text , handleNavClick}: prop) => {
     const shadowRef = useRef<HTMLDivElement | null>(null)
     const timeLineRef = useRef<GSAPTimeline | null>(null)
     const { contextSafe } = useGSAP(() => {
@@ -31,8 +33,15 @@ const HandleHoverComp = ({  divStyle, pStyle, text }: prop) => {
     const handleHoverOut = contextSafe(() => {
         timeLineRef.current?.timeScale(1.2).reverse();
     });
+    const getId = (name:string)=>{
+        if (name === 'Home' || name === 'TOP') {
+            return '#hero'
+        }else{
+            return `#${name}`
+        }
+    }
     return (
-        <div onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut} className={`${divStyle} group relative overflow-hidden cursor-pointer border-background`}>
+        <div onClick={()=> handleNavClick(getId(text))} onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut} className={`${divStyle} group relative overflow-hidden cursor-pointer border-background`}>
             <div ref={shadowRef} className='absolute  w-full h-full bg-background inset-0 z-0'></div>
             <p className={`${pStyle} uppercase relative z-10 transition-all duration-150 text-background group-hover:text-white`}>
                 {text}

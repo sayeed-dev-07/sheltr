@@ -44,7 +44,7 @@ const ImgCard = ({ url, text }: { url: string, text: string }) => {
     return (
         <div ref={containerRef} className='flex items-center justify-center md:h-[110vh] flex-col sm:px-4 px-1.5  gap-y-3'>
             <div className='max-w-112.5 relative overflow-hidden  w-full h-112.5'>
-                <Image alt='pickupSideImg' src={`${url}`} fill />
+                <Image   alt='pickupSideImg' src={`${url}`} fill />
                 <div ref={imgCoverRef} className='w-full h-full absolute inset-0 bg-black'></div>
             </div>
             <div>

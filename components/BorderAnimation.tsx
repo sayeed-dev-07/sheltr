@@ -18,8 +18,8 @@ const BorderAnimation = ({ text }: { text: string }) => {
         tl.current = gsap.timeline({paused:true})
         tl.current.to(borderRef.current,{
             x:'0%',
-            duration:0.5,
-            ease:'power1.inOut',
+            duration:0.4,
+            ease:'power1',
         })
 
     })
@@ -27,7 +27,7 @@ const BorderAnimation = ({ text }: { text: string }) => {
         tl.current?.play()
     })
     const hover2 = contextSafe(()=>{
-        tl.current?.reverse()
+        tl.current?.timeScale(1.4).reverse()
     })
     return (
         <div onMouseEnter={hover1} onMouseLeave={hover2} className='overflow-hidden cursor-pointer w-full h-full'>

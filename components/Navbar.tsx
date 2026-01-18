@@ -13,7 +13,7 @@ import HandleHoverComp from './handleHover'
 
 gsap.registerPlugin(SplitText, ScrollSmoother)
 
-const Navbar = ({ setIntroCom }: { setIntroCom: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const Navbar = ({ setIntroCom, onNavigate }: { setIntroCom: React.Dispatch<React.SetStateAction<boolean>>, onNavigate: (target: string) => void }) => {
   const topRef = useRef<HTMLDivElement | null>(null)
   const menuTl = useRef<GSAPTimeline | null>(null)
   const topTl = useRef<GSAPTimeline | null>(null)
@@ -93,7 +93,7 @@ const Navbar = ({ setIntroCom }: { setIntroCom: React.Dispatch<React.SetStateAct
         autoAlpha: 1,
         duration: 0.4,
         ease: 'power3.out',
-        
+
       }, "-=0.4")
 
     /* SIDEBAR + HAMBURGER TIMELINE */
@@ -119,6 +119,13 @@ const Navbar = ({ setIntroCom }: { setIntroCom: React.Dispatch<React.SetStateAct
       document.body.style.overflow = 'auto';
     }
   })
+  const handleNavClick = (target: string) => {
+    onNavigate(target)
+    menuTl.current?.reverse()
+    ScrollSmoother.get()?.paused(false)
+    document.body.style.overflow = 'auto'
+  }
+
 
   return (
     <div className="main relative h-screen border-b border-background w-full bg-foreground overflow-hidden">
@@ -130,8 +137,8 @@ const Navbar = ({ setIntroCom }: { setIntroCom: React.Dispatch<React.SetStateAct
 
         <div className="flex h-full w-full items-center justify-between px-[1%] md:px-[5%]">
           {/* Logo starts at opacity-0 */}
-          <Link
-            href="/"
+          <div
+            onClick={()=>handleNavClick('#hero')}
             id="logo"
             className="relative h-20 w-32 cursor-pointer overflow-hidden opacity-0"
           >
@@ -139,9 +146,10 @@ const Navbar = ({ setIntroCom }: { setIntroCom: React.Dispatch<React.SetStateAct
               src="/logo.png"
               alt="logo"
               fill
+
               className="object-contain"
             />
-          </Link>
+          </div>
 
           {/* Hamburger starts at opacity-0 */}
           <div
@@ -156,15 +164,15 @@ const Navbar = ({ setIntroCom }: { setIntroCom: React.Dispatch<React.SetStateAct
         {/* Sidebar Overlay */}
         <aside className="menuItem translate-x-full fixed left-0 text-background font-outfit text-4xl top-[10vh] flex flex-col gap-y-5 z-50 h-[90vh] w-full bg-foreground">
           <div className='grid mt-[30%] sm:mt-0 uppercase md:grid-cols-3 grid-cols-1 sm:grid-cols-2 h-[45vh] text-center border-background'>
-            <HandleHoverComp divStyle='flex items-center justify-center border-b sm:border-r' text='Residents' />
-            <HandleHoverComp divStyle='flex items-center justify-center border-b border-r-0 md:border-r' text='Culture' />
-            <HandleHoverComp divStyle='flex items-center md:border-r-0 sm:border-r border-r-0 justify-center border-b ' text='Houses' />
-            <HandleHoverComp divStyle='flex items-center justify-center border-b border-r-0 md:border-r' text='About' />
-            <HandleHoverComp divStyle='flex items-center justify-center border-b sm:border-r' text='Blogs' />
-            <HandleHoverComp divStyle='flex items-center justify-center border-b ' text='Contact' />
+            <HandleHoverComp handleNavClick={handleNavClick} divStyle='flex items-center justify-center border-b sm:border-r' text='Home' />
+            <HandleHoverComp handleNavClick={handleNavClick} divStyle='flex items-center justify-center border-b border-r-0 md:border-r' text='PickUp' />
+            <HandleHoverComp handleNavClick={handleNavClick} divStyle='flex items-center md:border-r-0 sm:border-r border-r-0 justify-center border-b ' text='Quotes' />
+            <HandleHoverComp handleNavClick={handleNavClick} divStyle='flex items-center justify-center border-b border-r-0 md:border-r' text='About' />
+            <HandleHoverComp handleNavClick={handleNavClick} divStyle='flex items-center justify-center border-b sm:border-r' text='Gallery' />
+            <HandleHoverComp handleNavClick={handleNavClick} divStyle='flex items-center justify-center border-b ' text='Contact' />
           </div>
           <div className='flex items-center justify-end px-4'>
-            <HandleHoverComp divStyle='sm:px-6 px-3.5 border-2 w-fit text-xl sm:py-2.5 py-1.5' text='TOP'></HandleHoverComp>
+            <HandleHoverComp handleNavClick={handleNavClick} divStyle='sm:px-6 px-3.5 border-2 w-fit text-xl sm:py-2.5 py-1.5' text='TOP'></HandleHoverComp>
           </div>
         </aside>
       </div>

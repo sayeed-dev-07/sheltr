@@ -58,7 +58,7 @@ const Footer = () => {
             ref={containerRef}
             // Mobile: 2 cols, gap-4 (16px) 
             // MD+: 3 cols+, gap-8 (32px)
-            className="background h-[110vh] overflow-hidden grid 
+            className="background h-screen overflow-hidden grid 
                        grid-cols-2 gap-4 
                        md:grid-cols-3 md:gap-8 
                        xl:grid-cols-4 

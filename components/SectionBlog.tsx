@@ -38,7 +38,7 @@ const SectionBlog = () => {
                         <Image
                             data-speed="auto"
                             src="https://images.pexels.com/photos/27843675/pexels-photo-27843675.jpeg"
-                            fill
+                            fill 
                             className="object-center scale-[1.5]"
                             alt="parallax image"
                         />
@@ -47,8 +47,8 @@ const SectionBlog = () => {
                 </div>
                 <div className='w-full flex items-center justify-between flex-col-reverse gap-y-12 md:flex-row md:gap-3'>
 
-                    <div className="lg:w-[500px] w-full max-w-[400px] sm:h-[500px] h-[400px] sm:w-[500px]  overflow-hidden relative">
-                        <Image
+                    <div className="lg:w-125 w-full max-w-100 sm:h-[500px] h-[400px] sm:w-[500px]  overflow-hidden relative">
+                        <Image 
                             data-speed="auto"
                             src="https://images.pexels.com/photos/32621498/pexels-photo-32621498.jpeg"
                             fill

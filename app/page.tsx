@@ -58,18 +58,34 @@ export default function Home() {
   return (
     <div id="smooth-wrapper" className="bg-foreground h-auto">
       <nav className="navbar-fixed fixed top-0 left-0 w-full z-50">
-        <Navbar setIntroCom={setIntroCom}/>
+        <Navbar onNavigate={handleClick} setIntroCom={setIntroCom} />
       </nav>
       <div id="smooth-content">
-        <div className="pt-[10vh]">
-          <Hero introCom={introCom}/>
-        </div>
-        <PickUp/>
-        <Zoom />
-        <Magazine/>
-        <SectionBlog/>
-        <Footer/>
+        <section id="hero" className="pt-[10vh]">
+          <Hero introCom={introCom} />
+        </section>
+
+        <section id="PickUp">
+          <PickUp />
+        </section>
+
+        <section id="About">
+          <Zoom />
+        </section>
+
+        <section id="Quotes">
+          <Magazine />
+        </section>
+
+        <section id="Gallery">
+          <SectionBlog />
+        </section>
+
+        <section id="Contact">
+          <Footer />
+        </section>
       </div>
+
 
 
     </div>
