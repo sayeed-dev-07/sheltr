@@ -40,7 +40,7 @@ const TextAnimation = ({ text, style }: { text: string, style: string }) => {
 
 
     return (
-        <div ref={textRef} className={`${style}`}>
+        <div ref={textRef} className={`${style} will-change-auto`}>
             {text}
         </div>
     );

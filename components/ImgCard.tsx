@@ -48,7 +48,7 @@ const ImgCard = ({ url, text }: { url: string, text: string }) => {
                 <div ref={imgCoverRef} className='w-full h-full absolute inset-0 bg-black'></div>
             </div>
             <div>
-                <p ref={textRef} className='md:max-w-112.5 leading-tight max-w-120 
+                <p ref={textRef} className='md:max-w-112.5 leading-6 max-w-120 
  w-full'>
                     {text}
                 </p>

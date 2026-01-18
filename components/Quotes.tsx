@@ -51,8 +51,8 @@ const Quotes = ({ img, quotes, subQuotes, num }: typeProp) => {
 
             {/* quotes section */}
             <div className='flex flex-col gap-y-2 sm:gap-y-5 md:gap-y-8'>
-                <TextAnimation text={quotes} style='lg:text-6xl font-semibold sm:font-normal md:text-5xl text-4xl xl:text-7xl' />
-                <TextAnimation style='text-lg' text={subQuotes} />
+                <TextAnimation text={quotes} style='lg:text-5xl font-semibold sm:font-normal md:text-4xl text-3xl xl:text-6xl' />
+                <TextAnimation style='text-lg leading-5' text={subQuotes} />
             </div>
             <div className='line h-2.5 md:h-5 bg-background w-full my-12'></div>
             <div className='w-full h-[30vh] sm:h-[40vh] md:h-[30vh] lg:h-[45vh] xl:h-[80vh]'>

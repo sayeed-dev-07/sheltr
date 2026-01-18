@@ -37,7 +37,7 @@ const Hero = ({ introCom }: { introCom: boolean }) => {
         heroTl.current = gsap.timeline({ paused: true })
 
         heroTl.current.from(split.lines, {
-            delay:0.5,
+            delay:0.3,
             duration: 1,
             ease: 'power3.out',
             stagger: 0.1,

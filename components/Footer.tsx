@@ -7,6 +7,8 @@ import ButtonBox from './Button'
 import Image from 'next/image'
 import { FacebookIcon, GithubIcon } from 'lucide-react'
 import Link from 'next/link'
+import HoverAnimation from './HoverAnimation'
+import BorderAnimation from './BorderAnimation'
 
 const Footer = () => {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -102,35 +104,35 @@ const Footer = () => {
                     <ColumnItems img1='https://i.pinimg.com/736x/51/47/b0/5147b083af3ead375424f5f4ed2e058b.jpg' img2='https://i.pinimg.com/736x/23/07/8f/23078f3ba43c83c757055b9d110b07cb.jpg' img3='https://i.pinimg.com/1200x/40/19/1c/40191cf1e2a58c7d8b749be598046443.jpg' img4='https://i.pinimg.com/1200x/0d/fc/2c/0dfc2c290c39de1b2e28c24a9686870f.jpg' />
                 </div>
             </div>
-            <div className='foreground flex items-center justify-between flex-col absolute text-white font-nunito h-full py-12 w-full inset-0 z-40'>
-                <div className='max-w-[60vw]  gap-y-8 mx-auto flex flex-col items-center justify-center p-12'>
-                    <p className='text-5xl'>Reservation is now open</p>
-                    <div className='w-60 h-15'>
+            <div className='foreground flex items-center justify-between flex-col px-2 absolute text-white font-nunito h-full py-12 w-full inset-0 z-40'>
+                <div className='md:max-w-[60vw] w-full gap-y-8 mx-auto flex flex-col items-center justify-center p-12'>
+                    <p className=' lg:text-5xl text-center text-4xl '>Reservation is now open</p>
+                    <div className='sm:w-60 w-40 h-12 sm:h-15'>
                         <ButtonBox text='contact' color='white' />
                     </div>
                 </div>
                 <div className='text-center'>
-                     <p className='text-8xl'>SHELTER</p>
-                     <div className='flex text-2xl cursor-pointer items-center justify-center gap-x-12 mt-12'>
-                        <Link href={'/'} className='flex items-center gap-x-2 justify-center'><GithubIcon/> Github</Link>
-                        <Link href={'/'} className='flex cursor-pointer items-center gap-x-2 justify-center'><FacebookIcon />Facebook</Link>
-                     </div>
-                </div>
-                <div className='flex w-full items-center justify-between max-w-[80vw]'>
-                    <div className='flex items-center justify-center gap-x-6'>
-                    <div>
-                        <p className='cursor-pointer'>privacy policy</p>
-                        <div className='w-full h-0.5 bg-white'></div>
-                    </div>
-                    <div>
-                        <a href='https://www.facebook.com/sayeed.shorif.2025' target='_blank' className='cursor-pointer'>&copy;sayedshorif</a>
-                        <div className='w-full h-0.5 bg-white'></div>
+                    <p className='md:text-6xl text-5xl lg:text-8xl'>SHELTER</p>
+                    <div className='flex text-2xl cursor-pointer items-center justify-center gap-x-12 mt-12'>
+                        <HoverAnimation text='Github' url='https://github.com/sayeed-dev-07' />
+                        <HoverAnimation text='Instagram' url='https://www.instagram.com/sayeed_dev_07/' logo='instagram' />
                     </div>
                 </div>
-                <div className='cursor-pointer'>
-                    <p>inspired by <a className='' target='_blank' href={'https://www.bess.jp/'}>BESS</a></p>
-                    <div className='w-full h-0.5 bg-white'></div>
-                </div>
+                <div className='flex w-full items-center justify-between flex-wrap gap-y-3 max-w-[80vw]'>
+                    <div className='flex items-center justify-center flex-wrap gap-x-6'>
+                        <a>
+                            <BorderAnimation text='Privacy Policy'/>
+                        </a>
+                        <div>
+                            <a href='https://www.facebook.com/sayeed.shorif.2025' target='_blank'>
+                            <BorderAnimation text='&copy;sayedshorif'/>
+                            </a>
+                            
+                        </div>
+                    </div>
+                    <a href='https://www.bess.jp/' target='_blank'>
+                        <BorderAnimation text='inspired by BESS'/>
+                    </a>
                 </div>
             </div>
         </div>
