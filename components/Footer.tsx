@@ -104,8 +104,8 @@ const Footer = () => {
                     <ColumnItems img1='https://i.pinimg.com/736x/51/47/b0/5147b083af3ead375424f5f4ed2e058b.jpg' img2='https://i.pinimg.com/736x/23/07/8f/23078f3ba43c83c757055b9d110b07cb.jpg' img3='https://i.pinimg.com/1200x/40/19/1c/40191cf1e2a58c7d8b749be598046443.jpg' img4='https://i.pinimg.com/1200x/0d/fc/2c/0dfc2c290c39de1b2e28c24a9686870f.jpg' />
                 </div>
             </div>
-            <div className='foreground flex items-center justify-between flex-col px-2 absolute text-white font-nunito h-full py-12 w-full inset-0 z-40'>
-                <div className='md:max-w-[60vw] w-full gap-y-8 mx-auto flex flex-col items-center justify-center p-12'>
+            <div className='foreground flex items-center justify-between flex-col px-2 absolute text-white font-nunito h-full p-12 w-full inset-0 z-40'>
+                <div className='md:max-w-[60vw] w-full gap-y-8 mx-auto flex flex-col items-center justify-center '>
                     <p className=' lg:text-5xl text-center text-4xl '>Reservation is now open</p>
                     <div className='sm:w-60 w-40 h-12 sm:h-15'>
                         <ButtonBox text='contact' color='white' />

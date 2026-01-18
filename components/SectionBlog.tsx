@@ -24,7 +24,7 @@ const SectionBlog = () => {
     })
 
     return (
-        <div id='smooth-wrapper' className='bg-[#ffe23f] min-h-[160vh]  py-[10%] md:py-[5%] sm:px-[5%] px-2 flex items-center justify-center'>
+        <div id='smooth-wrapper' className='bg-foreground min-h-[160vh]  py-[10%] md:py-[5%] sm:px-[5%] px-2 flex items-center justify-center'>
             <div id='smooth-content' className='text-background font-nunito w-full text-xl sm:text-2xl h-full md:text-3xl '>
                 <div className='flex flex-col gap-y-24 lg:text-4xl max-w-[1200px] mx-auto'>
                     

@@ -29,7 +29,7 @@ const PickUp = () => {
     })
 
     return (
-        <div ref={contaierRef} className='px-2 flex w-full flex-col md:flex-row'>
+        <div ref={contaierRef} className='px-2 flex w-full flex-col md:flex-row overflow-hidden'>
             <div className='leftSide md:w-[50%] w-full py-[10%] md:h-[100vh] flex items-center justify-center'>
                 <div className='lg:w-112.5 md:w-87.5 sm:max-w-112.5 max-w-40 w-full relative h-15 md:h-50'>
                     <Image  fill loading='lazy' alt='pickupImg' src={'https://ecjp9e4f5fk.exactdn.com/wordpress/wp-content/themes/bess/assets/images/top_pickup_title.png'} />

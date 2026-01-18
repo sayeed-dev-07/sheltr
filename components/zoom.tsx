@@ -58,7 +58,7 @@ const Zoom = () => {
   }, { scope: mainContainerRef })
 
   return (
-    <div ref={mainContainerRef} className='w-full  bg-[#507737] md:h-screen h-fit flex items-end justify-center mt-[45%] md:mt-0'>
+    <div ref={mainContainerRef} className='w-full overflow-hidden bg-[#507737] md:h-screen h-fit flex items-end justify-center mt-[45%] md:mt-0'>
 
       <div ref={imgContainerRef} className='relative after:content-[""] after:w-full after:h-full after:absolute after:inset-0 after:z-3 after:bg-black/30 overflow-hidden w-full h-[50vh] md:h-0 md:w-0'>
         <Image  loading="eager" fill alt='scrollImg' className='object-cover z-0' src={'/images/finalzoom.jpg'}  />

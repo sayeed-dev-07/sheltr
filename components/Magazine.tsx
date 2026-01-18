@@ -57,7 +57,7 @@ const Magazine = () => {
     })
 
     return (
-        <div ref={contaierRef} className='flex flex-col md:flex-row'>
+        <div ref={contaierRef} className='flex flex-col md:flex-row overflow-hidden w-full'>
             <div ref={leftContainer} className='h-screen  md:w-100 w-full bg-[#507737] flex items-center justify-center text-center flex-col md:border-r-15 border-black text-4xl gap-y-5 px-2'>
                 <p className='text-white font-semibold font-nunito'>Where Thoughts Begin</p>
                 <div className='max-w-[450px] w-full relative h-85 '>
